@@ -1,0 +1,16 @@
+<h3><%= t(:glanceyear) %></h3>
+
+<div id="js-glanceyear"/>
+
+<script>
+  var massive = <%= @activities.to_json.html_safe %>;
+  $('div#js-glanceyear').glanceyear(massive, {
+      showToday: true
+    });
+</script>
+
+
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag "glanceyear.css", :plugin => "redmine_glanceyear", :media => "screen" %>
+  <%= javascript_include_tag "jquery.glanceyear.min.js", :plugin => "redmine_glanceyear" %>
+<% end %>
