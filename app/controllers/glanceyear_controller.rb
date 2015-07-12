@@ -28,10 +28,12 @@ class GlanceyearController < ApplicationController
     events = @activity.events(1.years.ago, Date.today.since(1.days))
     count_map = {}
     events.each do |event|
-      if event.respond_to?(:created_on)
-          date_formatted = event.created_on.strftime("%Y-%-m-%-d")
-          count_map[date_formatted] = 0 unless count_map[date_formatted]
-          count_map[date_formatted] += 1
+      [:created_on, :committed_on].each do |created_on|
+        if event.respond_to?(created_on)
+            date_formatted = event.send(created_on).strftime("%Y-%-m-%-d")
+            count_map[date_formatted] = 0 unless count_map[date_formatted]
+            count_map[date_formatted] += 1
+        end
       end
     end
     count_map.map {|k, v| {:date => k, :value => v} }
