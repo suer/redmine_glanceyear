@@ -3,6 +3,7 @@ class GlanceyearController < ApplicationController
   before_filter :find_project
 
   def show
+    @authors = @project.assignable_users
     @activities = activities
   end
 
@@ -15,7 +16,15 @@ class GlanceyearController < ApplicationController
   end
 
   def activities
-    @activity = Redmine::Activity::Fetcher.new(User.current, :project => @project, :with_subprojects => true)
+    @include_subproject = params[:include_subproject].blank? ? false : params[:include_subproject]
+    @author_id = params[:author_id] || ''
+    options = {
+      :project => @project,
+      :with_subprojects => @include_subproject
+    }
+    options.merge!(:author => User.find(@author_id)) unless @author_id.blank?
+
+    @activity = Redmine::Activity::Fetcher.new(User.current, options)
     events = @activity.events(1.years.ago, Date.today.since(1.days))
     count_map = {}
     events.each do |event|

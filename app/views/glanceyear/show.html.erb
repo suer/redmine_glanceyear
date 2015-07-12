@@ -1,4 +1,14 @@
-<h2><%= t(:glanceyear) %></h2>
+<h2><%= l(:glanceyear) %></h2>
+
+<%= form_tag url_for(:controller => 'glanceyear', :action => 'show', :project_id => @project), :method => 'GET' do |f| %>
+  <div>
+    <%= l(:include_subproject) %>:
+    <%= check_box_tag :include_subproject, true, @include_subproject %>
+    <%= l(:field_author) %>:
+    <%= select_tag :author_id, options_for_select(@authors.map {|u| [u.name, u.id]}, @author_id), :include_blank => true%>
+    <%= submit_tag l(:reload) %>
+  </div>
+<% end %>
 
 <div id="js-glanceyear"/>
 
