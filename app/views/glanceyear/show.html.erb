@@ -1,13 +1,18 @@
 <h2><%= l(:glanceyear) %></h2>
 
 <%= form_tag url_for(:controller => 'glanceyear', :action => 'show', :project_id => @project), :method => 'GET' do |f| %>
-  <div>
+  <div class="form-control">
     <%= l(:include_subproject) %>:
     <%= check_box_tag :include_subproject, true, @include_subproject %>
+  </div>
+  <div class="form-control">
     <%= l(:field_author) %>:
     <%= select_tag :author_id, options_for_select(@authors.map {|u| [u.name, u.id]}, @author_id), :include_blank => true%>
-    <%= submit_tag l(:reload) %>
   </div>
+  <div class="form-control">
+    <%= submit_tag l(:button_apply) %>
+  </div>
+  <div style="clear: both;"></div>
 <% end %>
 
 <div id="js-glanceyear"/>
@@ -22,5 +27,6 @@
 
 <% content_for :header_tags do %>
   <%= stylesheet_link_tag "glanceyear.css", :plugin => "redmine_glanceyear", :media => "screen" %>
+  <%= stylesheet_link_tag "glanceyear-plugin.css", :plugin => "redmine_glanceyear", :media => "screen" %>
   <%= javascript_include_tag "jquery.glanceyear.min.js", :plugin => "redmine_glanceyear" %>
 <% end %>
