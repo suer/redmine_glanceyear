@@ -20,6 +20,16 @@
 <script>
   var massive = <%= @activities.to_json.html_safe %>;
   $('div#js-glanceyear').glanceyear(massive, {
+      eventClick: function(e) {
+        var url = "<%= url_for(:controller => 'activities', :action => 'index', :project_id => @project).html_safe %>";
+        url += "&from=" + e.date;
+        url += "&with_subprojects=" + ("<%= @include_subproject %>" == "true" ? 1 : 0);
+        var user_id = "<%= @author_id %>";
+        if (user_id != "") {
+          url += "&user_id=" + user_id
+        }
+        location.href = url;
+      },
       showToday: true
     });
 </script>
