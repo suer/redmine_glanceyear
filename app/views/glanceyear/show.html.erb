@@ -40,3 +40,10 @@
   <%= stylesheet_link_tag "glanceyear-plugin.css", :plugin => "redmine_glanceyear", :media => "screen" %>
   <%= javascript_include_tag "jquery.glanceyear.min.js", :plugin => "redmine_glanceyear" %>
 <% end %>
+
+<style>
+svg rect.day[data-count] { fill: #277672; }
+svg rect.day[data-count='1'] { fill: #c3dbda; }
+svg rect.day[data-count='2'] { fill: #5caeaa; }
+svg rect.day[data-count='3'] { fill: #3d9692; }
+</style>
