@@ -1,6 +1,6 @@
 class GlanceyearController < ApplicationController
   unloadable
-  before_filter :find_project
+  before_action :find_project
 
   def show
     @authors = @project.assignable_users
