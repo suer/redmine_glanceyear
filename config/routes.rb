@@ -1,1 +1,1 @@
-match 'glanceyear/:project_id/:action(.:format)', :controller => 'glanceyear', :via => [:get, :post]
+match 'glanceyear/:project_id/show(.:format)', controller: 'glanceyear', action: 'show', via: [:get, :post]
