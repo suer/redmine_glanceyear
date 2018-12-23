@@ -2,7 +2,7 @@ Redmine::Plugin.register :redmine_glanceyear do
   name 'Redmine glanceyear plugin'
   author 'suer'
   description 'This is a plugin for Redmine to draw year activities'
-  version '0.0.1'
+  version '0.0.2'
   url 'https://github.com/suer/redmine_glanceyear/'
   author_url 'https://d.hatena.ne.jp/suer/'
 

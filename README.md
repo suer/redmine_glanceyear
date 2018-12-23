@@ -22,7 +22,7 @@ and restart your Redmine.
 Requirements
 ------------------------------
 
-* Redmine 3.0 or later
+* Redmine 4.0 or later
 
 Credits
 ------------------------------
